@@ -12,6 +12,8 @@ import pytest
 
 from . import CLOUD_PROVIDERS, PUBLIC_SKIP_TAGS, running_on_public_ci
 
+logger = getLogger(__name__)
+
 
 def pytest_collection_modifyitems(items) -> None:
     """Applies tags to tests based on folders that they are in."""

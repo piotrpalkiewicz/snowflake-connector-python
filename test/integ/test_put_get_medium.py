@@ -21,6 +21,8 @@ from snowflake.connector.file_transfer_agent import SnowflakeAzureProgressPercen
 from ..generate_test_files import generate_k_lines_of_n_files
 from ..randomize import random_string
 
+from ..generate_test_files import generate_k_lines_of_n_files
+
 try:
     from parameters import (CONNECTION_PARAMETERS_ADMIN)
 except ImportError:
