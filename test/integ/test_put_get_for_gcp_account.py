@@ -20,15 +20,7 @@ from snowflake.connector.constants import UTF8
 from snowflake.connector.file_transfer_agent import SnowflakeFileTransferAgent
 
 from ..generate_test_files import generate_k_lines_of_n_files
-<<<<<<< HEAD:test/integ/test_put_get_with_gcp_account.py
 from ..randomize import random_string
-=======
-
-try:
-    from parameters import (CONNECTION_PARAMETERS_ADMIN)
-except ImportError:
-    CONNECTION_PARAMETERS_ADMIN = {}
->>>>>>> deb3cac... reorganized test folder structure and separated unit tests from integration tests and updated pytest markers and tox configuration:test/integ/test_put_get_for_gcp_account.py
 
 logger = getLogger(__name__)
 
@@ -72,23 +64,13 @@ def test_put_get_with_gcp(tmpdir, conn_cnx, db_parameters):
     assert original_contents == contents, 'Output is different from the original file'
 
 
-<<<<<<< HEAD:test/integ/test_put_get_with_gcp_account.py
-=======
-@pytest.mark.skipif(
-    not CONNECTION_PARAMETERS_ADMIN,
-    reason="Snowflake admin account is not accessible."
-)
->>>>>>> deb3cac... reorganized test folder structure and separated unit tests from integration tests and updated pytest markers and tox configuration:test/integ/test_put_get_for_gcp_account.py
 def test_put_copy_many_files_gcp(tmpdir, conn_cnx, db_parameters):
     """[gcp] Puts and Copies many files."""
     # generates N files
     number_of_files = 10
     number_of_lines = 1000
     tmp_dir = generate_k_lines_of_n_files(number_of_lines, number_of_files, tmp_dir=str(tmpdir.mkdir('data')))
-<<<<<<< HEAD:test/integ/test_put_get_with_gcp_account.py
     table_name = random_string(5, 'test_put_copy_many_files_gcp_')
-=======
->>>>>>> deb3cac... reorganized test folder structure and separated unit tests from integration tests and updated pytest markers and tox configuration:test/integ/test_put_get_for_gcp_account.py
 
     files = os.path.join(tmp_dir, 'file*')
 
@@ -120,25 +102,13 @@ def test_put_copy_many_files_gcp(tmpdir, conn_cnx, db_parameters):
                 run(csr, "drop table if exists {name}")
 
 
-<<<<<<< HEAD:test/integ/test_put_get_with_gcp_account.py
 def test_put_copy_duplicated_files_gcp(tmpdir, conn_cnx, db_parameters):
-=======
-@pytest.mark.skipif(
-    not CONNECTION_PARAMETERS_ADMIN,
-    reason="Snowflake admin account is not accessible."
-)
-def test_put_copy_duplicated_files_gcp(tmpdir, conn_cnx,
-                                         db_parameters):
->>>>>>> deb3cac... reorganized test folder structure and separated unit tests from integration tests and updated pytest markers and tox configuration:test/integ/test_put_get_for_gcp_account.py
     """[gcp] Puts and Copies duplicated files."""
     # generates N files
     number_of_files = 5
     number_of_lines = 100
     tmp_dir = generate_k_lines_of_n_files(number_of_lines, number_of_files, tmp_dir=str(tmpdir.mkdir('data')))
-<<<<<<< HEAD:test/integ/test_put_get_with_gcp_account.py
     table_name = random_string(5, 'test_put_copy_duplicated_files_gcp_')
-=======
->>>>>>> deb3cac... reorganized test folder structure and separated unit tests from integration tests and updated pytest markers and tox configuration:test/integ/test_put_get_for_gcp_account.py
 
     files = os.path.join(tmp_dir, 'file*')
 
@@ -200,22 +170,12 @@ def test_put_copy_duplicated_files_gcp(tmpdir, conn_cnx,
                 run(csr, "drop table if exists {name}")
 
 
-<<<<<<< HEAD:test/integ/test_put_get_with_gcp_account.py
-=======
-@pytest.mark.skipif(
-    not CONNECTION_PARAMETERS_ADMIN,
-    reason="Snowflake admin account is not accessible."
-)
->>>>>>> deb3cac... reorganized test folder structure and separated unit tests from integration tests and updated pytest markers and tox configuration:test/integ/test_put_get_for_gcp_account.py
 def test_put_get_large_files_gcp(tmpdir, conn_cnx, db_parameters):
     """[gcp] Puts and Gets Large files."""
     number_of_files = 3
     number_of_lines = 200000
     tmp_dir = generate_k_lines_of_n_files(number_of_lines, number_of_files, tmp_dir=str(tmpdir.mkdir('data')))
-<<<<<<< HEAD:test/integ/test_put_get_with_gcp_account.py
     folder_name = random_string(5, 'test_put_get_large_files_gcp_')
-=======
->>>>>>> deb3cac... reorganized test folder structure and separated unit tests from integration tests and updated pytest markers and tox configuration:test/integ/test_put_get_for_gcp_account.py
 
     files = os.path.join(tmp_dir, 'file*')
     output_dir = os.path.join(tmp_dir, 'output_dir')
@@ -351,16 +311,8 @@ def test_get_gcp_file_object_http_400_error(tmpdir, conn_cnx, db_parameters):
 def test_auto_compress_off_gcp(tmpdir, conn_cnx, db_parameters):
     """[gcp] Puts and Gets a small text using gcp with no auto compression."""
     fname = str(os.path.join(os.path.dirname(os.path.realpath(__file__)), '../data', 'example.json'))
-<<<<<<< HEAD:test/integ/test_put_get_with_gcp_account.py
     stage_name = random_string(5, 'teststage_')
     with conn_cnx() as cnx:
-=======
-    with conn_cnx(
-            user=db_parameters['user'],
-            account=db_parameters['account'],
-            password=db_parameters['password'],
-    ) as cnx:
->>>>>>> deb3cac... reorganized test folder structure and separated unit tests from integration tests and updated pytest markers and tox configuration:test/integ/test_put_get_for_gcp_account.py
         with cnx.cursor() as cursor:
             try:
                 cursor.execute("create or replace stage {}".format(stage_name))
