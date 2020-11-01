@@ -16,15 +16,19 @@ import snowflake.connector
 from snowflake.connector import DatabaseError, OperationalError, ProgrammingError
 from snowflake.connector.auth_okta import AuthByOkta
 from snowflake.connector.connection import SnowflakeConnection
-from snowflake.connector.constants import QueryStatus
 from snowflake.connector.description import CLIENT_NAME
 from snowflake.connector.errors import ForbiddenError
 from snowflake.connector.network import APPLICATION_SNOWSQL
 
-try:
+try:  # pragma: no cover
     from parameters import (CONNECTION_PARAMETERS_ADMIN)
 except ImportError:
     CONNECTION_PARAMETERS_ADMIN = {}
+
+try:  # pragma: no cover
+    from snowflake.connector.constants import QueryStatus
+except ImportError:
+    QueryStatus = None
 
 
 def test_basic(conn_testaccount):
