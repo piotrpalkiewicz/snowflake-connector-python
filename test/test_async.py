@@ -12,7 +12,7 @@ from snowflake.connector.constants import QueryStatus
 from snowflake.connector.errors import InterfaceError
 
 # Mark all tests in this file to time out after 2 minutes to prevent hanging forever
-pytestmark = pytest.mark.timeout(120)
+pytestmark = [pytest.mark.timeout(120), pytest.mark.skipolddriver]
 
 
 def test_async_exec(conn_cnx):
