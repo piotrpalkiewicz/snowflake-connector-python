@@ -16,7 +16,7 @@ from io import StringIO
 from logging import getLogger
 from threading import Lock
 from time import strptime
-from typing import Callable, Dict, Generator, Iterable, Tuple
+from typing import Any, Callable, Dict, Generator, Iterable, Tuple
 
 from . import errors, proxy
 from .auth import Auth
